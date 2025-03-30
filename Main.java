@@ -6,22 +6,24 @@ import java.util.LinkedHashMap;
 
 class Main {
 
-    static Map<String, Integer> votings = new LinkedHashMap<>(); //create dictionary to store votes
+    static Map<String, Integer> votings = new LinkedHashMap<>(); //create dictionary to store votes, use linkedhashmap to maintain order 
 
-    public static void CastVote(String candidateName)
+    public static void CastVote(String candidateName) //method to add to value
     {
-        votings.put(candidateName, votings.get(candidateName) + 1);
+        votings.put(candidateName, votings.get(candidateName) + 1); //add to value of candidate selected
     }
 
-    public static void DisplayResults()
+    public static void DisplayResults() //method to print results
     {
+        //for loop that prints all the key and values of the dictionary
         for (Map.Entry<String, Integer> entry : votings.entrySet()) {
             System.out.println(entry.getKey() + ": " + entry.getValue());
         }
     }
 
-    public static void ResetVotes()
+    public static void ResetVotes() //method to reset all votes
     {
+        //for loop that sets all values to 0
         for (String key : votings.keySet()) {
             votings.put(key, 0);
         }    
@@ -50,33 +52,33 @@ class Main {
     votings.put(candidateTwo, 0);
     votings.put(candidateThree, 0);
 
-
+    //while loop that runs until user exits
     while (running) {
         System.out.println("Who do you want to vote for? (1 for " + candidateOne  + " , 2 for " + candidateTwo + " , 3 for " + candidateThree + " , 4 to reset votes, and 5 to exit)");
-        userInput = scanner.nextInt();
-        switch (userInput) {
+        userInput = scanner.nextInt(); //take user input for switch case
+        switch (userInput) { //switchcase that calls method to either cast the vote, reset, or exit
             case 1:
-                CastVote(candidateOne);
-                DisplayResults();
-                break;
+                CastVote(candidateOne); //call method for candidate one
+                DisplayResults(); //print all results
+                break; //break from switch 
             case 2:
-                CastVote(candidateTwo);
-                DisplayResults();
-                break;
+                CastVote(candidateTwo); //call method for candidate two
+                DisplayResults(); //print all results
+                break; //break from switch 
             case 3:
                 CastVote(candidateThree);
-                DisplayResults();
-                break;    
+                DisplayResults(); //print all results
+                break;    //break from switch 
             case 4:
-                ResetVotes();
-                DisplayResults();
-                break;
+                ResetVotes(); //reset all votes
+                DisplayResults(); //print all results
+                break; //break from switch 
             case 5:
-                running = false;
-                break;
+                running = false; //break out from while loop
+                break; //break from switch 
             default:
-                System.out.println("Please enter a valid number 1-5");
-                break;
+                System.out.println("Please enter a valid number 1-5"); //check for valid input
+                break; //break from switch 
         }
     }    
   }
